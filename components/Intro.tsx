@@ -1,6 +1,7 @@
-import { useRef, useLayoutEffect } from 'react';
-import { gsap } from 'gsap';
-import AIVoiceVisualization from './AIVoiceVisualization';
+import { useRef, useLayoutEffect } from "react";
+import { gsap } from "gsap";
+import AIVoiceVisualization from "./AIVoiceVisualization";
+import GeminiButton from "./GeminiButton";
 
 interface IntroProps {
   onComplete: () => void;
@@ -18,20 +19,24 @@ function Intro({ onComplete }: IntroProps) {
         rotationY: 360,
         repeat: -1,
         yoyo: true,
-        ease: 'sine.inOut',
+        ease: "sine.inOut",
       });
       gsap.to(orbRef.current, {
         duration: 6,
-        boxShadow: '0 0 60px 15px rgba(0, 0, 0, 0.1), 0 0 120px 30px rgba(0, 0, 0, 0.05)',
+        boxShadow:
+          "0 0 60px 15px rgba(0, 0, 0, 0.1), 0 0 120px 30px rgba(0, 0, 0, 0.05)",
         repeat: -1,
         yoyo: true,
-        ease: 'power1.inOut'
+        ease: "power1.inOut",
       });
     }
   }, []);
 
   return (
-    <div ref={containerRef} className="flex flex-col items-center justify-center text-center h-screen max-h-[600px]">
+    <div
+      ref={containerRef}
+      className="flex flex-col items-center justify-center text-center h-screen max-h-[600px]"
+    >
       <div className="relative">
         <div
           data-transition-target="orb"
@@ -43,19 +48,20 @@ function Intro({ onComplete }: IntroProps) {
           <AIVoiceVisualization size="large" showWhenSilent={true} />
         </div>
       </div>
-      <h1 data-transition-target="title" className="text-4xl md:text-6xl font-bold tracking-tighter bg-gradient-to-br from-black to-neutral-700 bg-clip-text text-transparent mb-4">
+      <h1
+        data-transition-target="title"
+        className="text-4xl md:text-6xl font-bold tracking-tighter bg-gradient-to-br from-black to-neutral-700 bg-clip-text text-transparent mb-4"
+      >
         Dream Weaver
       </h1>
-      <p data-transition-target="subtitle" className="text-lg md:text-xl text-neutral-600 max-w-md mb-8 font-light">
-        Unlock the secrets of your subconscious. Let's explore the world behind your eyes.
-      </p>
-      <button
-        data-transition-target="button"
-        onClick={onComplete}
-        className="btn-secondary"
+      <p
+        data-transition-target="subtitle"
+        className="text-lg md:text-xl text-neutral-600 max-w-md mb-8 font-light"
       >
-        Begin Weaving
-      </button>
+        Unlock the secrets of your subconscious. Let's explore the world behind
+        your eyes.
+      </p>
+      <GeminiButton onClick={onComplete}>Begin Weaving</GeminiButton>
     </div>
   );
 }
